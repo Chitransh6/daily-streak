@@ -1,3 +1,7 @@
+<img width="1515" height="1100" alt="ui-preview-mobile-dark-light" src="https://github.com/user-attachments/assets/07fb85b9-8913-4538-9932-5b71589883e5" />
+
+<img width="1402" height="760" alt="ui-preview-desktop-dark-light" src="https://github.com/user-attachments/assets/bd3185a1-78d9-43a1-8b87-1d49b8c20f46" />
+
 # VELoop Rewards - Daily Streak (MERN)
 
 ## Run
