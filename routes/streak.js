@@ -1,0 +1,12 @@
+const r = require('express').Router();
+const rateLimit = require('express-rate-limit');
+const auth = require('../middleware/auth');
+const svc = require('../services/streak.service');
+const wrap = (fn) => (q, s, n) => fn(q, s, n).catch(n);
+const claimLimit = rateLimit({ windowMs: 60000, max: 20, message: { success: false, code: 'RATE_LIMIT', message: 'Too many attempts. Please slow down.' } });
+r.use(auth);
+r.get('/', wrap(async (q, s) => s.json(await svc.getStreak(q.userId))));
+r.get('/status', wrap(async (q, s) => s.json(await svc.getStatus(q.userId))));
+r.post('/claim', claimLimit, wrap(async (q, s) => s.json(await svc.claim(q.userId, q.body || {}, q.ip))));
+r.get('/history', wrap(async (q, s) => s.json(await svc.history(q.userId))));
+module.exports = r;
