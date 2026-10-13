@@ -4,6 +4,8 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const app = express();
 
+app.set('trust proxy', 1);
+
 const allowed = (process.env.CLIENT_URL || '').split(',').map((x) => x.trim()).filter(Boolean);
 app.use(cors({ origin: (o, cb) => cb(null, !o || allowed.includes(o) || (process.env.NODE_ENV !== 'production' && /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(o))) }));
 app.use(express.json({ limit: '10kb' }));
